@@ -1,0 +1,55 @@
+.text-center {
+  text-align: center;
+}
+
+.botao-direita {
+  justify-content: center;
+}
+
+body {
+  font-family: Andale Mono, monospace;
+  background: rgb(255, 255, 255);
+  background-image: url(https://img.freepik.com/vetores-gratis/plano-de-fundo-geometrico-da-area-de-trabalho-vetor-de-design-abstrato-branco_53876-144666.jpg?w=2000);
+  background-size: 100%;
+}
+.texto {
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5%;
+  width: 85%;
+  margin: 0 auto;
+  padding: 0.5cm;
+  text-indent: 2%;
+}
+
+.Navegaçao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 25%;
+  width: 85%;
+  margin: 0 auto;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  font-size: 20px;
+  color: #000;
+}
+a:hover {
+  font-size: 21px;
+  color: #000;
+  font-weight: bold;
+}
+
+.volte {
+  display: flex;
+  border-radius: 25%;
+  border: 2px solid rgb(0, 0, 0);
+  width: 7%;
+  padding-left: 15px;
+}
