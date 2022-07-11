@@ -34,8 +34,45 @@
 
 
 
+                <div class="form-group">
+                    <label>Procedimento :</label>
+                    <div class="row">
+                        <div class="col-3">
+                            <select th:field="*{procedimentoId}" class="form-select">
+                                <option th:each="umProcedimento : ${listaProcedimentos}" th:value="${umProcedimento.id}"
+                                    th:text="${umProcedimento.descricao}"></option>
+                        </div>
+                    </div>
+                    </select>
+                    <button type="submit" name="incprocedimento" class="btn btn-primary">Incluir Procedimento</button>
+                </div>
+                <div class="form-group">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Procedimento</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umProcedimento, stat : *{listaProcedimentos}">
+                                <td th:text="${umProcedimento.descricao}"></td>
+                                <input type="hidden" th:field="*{listaProcedimentos[__${stat.index}__].id}" />
+                                <input type="hidden" th:field="*{listaProcedimentos[__${stat.index}__].descricao}" />
+                                <td>
+                                    <button type="submit" name="removeitem" th:value="__${stat.index}__"
+                                        class="btn btn-primary">Remover</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
                 <div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" name=save class="btn btn-primary">Enviar</button>
                 </div>
 
 

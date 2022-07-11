@@ -1,6 +1,8 @@
 package br.univille.dacs2022.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -13,21 +15,39 @@ public class PacienteDTO {
     @NotBlank(message = " O campo nome não pode ser deixado em branco")
     @NotNull
     private String nome;
-    @Pattern(regexp = "Maculino|Feminino", flags = Pattern.Flag.CANON_EQ, message = "Valor Invalido, Utilize Masculino ou Feminino")
+    @Pattern(regexp = "Masculino|Feminino", flags = Pattern.Flag.CANON_EQ, message = "Valor Invalido, Utilize Masculino ou Feminino")
     private String sexo;
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
     private long cidadeId;
+    private List<PlanoDeSaudeDTO> listaPlanos = new ArrayList<>();
+    private long planoId;
+    private CidadeDTO cidade;
+
+    public long getPlanoId() {
+        return planoId;
+    }
+
+    public void setPlanoId(long planoId) {
+        this.planoId = planoId;
+    }
+
+    public List<PlanoDeSaudeDTO> getListaPlanos() {
+        return listaPlanos;
+    }
+
+    public void setListaPlanos(List<PlanoDeSaudeDTO> listaPlanos) {
+        this.listaPlanos = listaPlanos;
+    }
 
     public long getCidadeId() {
         return cidadeId;
     }
+
     public void setCidadeId(long cidadeId) {
         this.cidadeId = cidadeId;
     }
-    
-    private CidadeDTO cidade;
 
     public CidadeDTO getCidade() {
         return cidade;

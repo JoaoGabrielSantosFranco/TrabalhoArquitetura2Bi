@@ -12,7 +12,7 @@ public class Procedimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(length = 1000)
-    private String Descricao;
+    private String descricao;
 
     public long getId() {
         return id;
@@ -23,11 +23,11 @@ public class Procedimento {
     }
 
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
+        this.descricao = descricao;
     }
 
 }

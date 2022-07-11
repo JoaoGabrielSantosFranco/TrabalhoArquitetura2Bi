@@ -21,16 +21,8 @@ public class Medico {
     private String nome;
     private String CRM;
 
-    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
-    private List<ProcedimentoRealizado> listaProcedimentos = new ArrayList<>();
-
-    public List<ProcedimentoRealizado> getListaProcedimentos() {
-        return listaProcedimentos;
-    }
-
-    public void setListaProcedimentos(List<ProcedimentoRealizado> listaProcedimentos) {
-        this.listaProcedimentos = listaProcedimentos;
-    }
+    @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
+    private List<Procedimento> listaProcedimentos = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -54,6 +46,14 @@ public class Medico {
 
     public void setCRM(String cRM) {
         CRM = cRM;
+    }
+
+    public List<Procedimento> getListaProcedimentos() {
+        return listaProcedimentos;
+    }
+
+    public void setListaProcedimentos(List<Procedimento> listaProcedimentos) {
+        this.listaProcedimentos = listaProcedimentos;
     }
 
 }

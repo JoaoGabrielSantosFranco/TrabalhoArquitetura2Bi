@@ -54,4 +54,10 @@ public class ProcedimentoServiceImpl implements ProcedimentoService {
 
         return null;
     }
+
+    @Override
+    public ProcedimentoDTO getById(long id) {
+        var procedimento = repository.findById(id);
+        return mapper.mapProcedimento(procedimento.get());
+    }
 }

@@ -12,4 +12,7 @@ public interface ProcedimentoService {
     public ProcedimentoDTO findById(long id);
 
     public ProcedimentoDTO delete(long id);
+
+    public ProcedimentoDTO getById(long id);
 }
+

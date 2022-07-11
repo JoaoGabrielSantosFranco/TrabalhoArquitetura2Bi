@@ -2,9 +2,9 @@ package br.univille.dacs2022.controller;
 
 import java.util.HashMap;
 import java.util.List;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
-
+import br.univille.dacs2022.service.PlanoDeSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,6 +28,9 @@ public class PacienteController {
     @Autowired
     private CidadeService cidadeService;
 
+    @Autowired
+    private PlanoDeSaudeService planoService;
+
     @GetMapping
     public ModelAndView index() {
 
@@ -40,14 +43,16 @@ public class PacienteController {
     public ModelAndView novo() {
         var paciente = new PacienteDTO();
         var listaCidades = cidadeService.getAll();
+        var listaPlanos = planoService.getAll();
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("paciente", paciente);
         dados.put("listaCidades", listaCidades);
+        dados.put("listaPlanos", listaPlanos);
         return new ModelAndView("paciente/form", dados);
 
     }
 
-    @PostMapping(params = "form")
+    @PostMapping(params = "save")
     public ModelAndView save(@Valid @ModelAttribute("paciente") PacienteDTO paciente, BindingResult bindingResult) {
         var cidadeDTO = cidadeService.findById(paciente.getCidadeId());
         paciente.setCidade(cidadeDTO);
@@ -55,21 +60,55 @@ public class PacienteController {
             var listaCidades = cidadeService.getAll();
             HashMap<String, Object> dados = new HashMap<>();
             dados.put("listaCidades", listaCidades);
-            return new ModelAndView("paciente/form",dados);
+            return new ModelAndView("paciente/form", dados);
 
         }
         service.save(paciente);
         return new ModelAndView("redirect:/paciente");
     }
 
+    @PostMapping(params = "incplano")
+    public ModelAndView incluirPlano(@Valid @ModelAttribute("paciente") PacienteDTO paciente,
+            BindingResult bindingResult) {
+        var idPlanoSelect = paciente.getPlanoId();
+        var planoSelect = planoService.getById(idPlanoSelect);
+        paciente.getListaPlanos().add(planoSelect);
+
+        var listaCidades = cidadeService.getAll();
+        var listaPlanos = planoService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("paciente", paciente);
+        dados.put("listaCidades", listaCidades);
+        dados.put("listaPlanos", listaPlanos);
+
+        return new ModelAndView("paciente/form", dados);
+    }
+
+    @PostMapping(params = "removeitem")
+    public ModelAndView removerPlano(@Valid @ModelAttribute("paciente") PacienteDTO paciente,
+            @RequestParam(name = "removeitem") int index,
+            BindingResult bindingResult) {
+        paciente.getListaPlanos().remove(index);
+
+        var listaCidades = cidadeService.getAll();
+        var listaPlanos = planoService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("paciente", paciente);
+        dados.put("listaCidades", listaCidades);
+        dados.put("listaPlanos", listaPlanos);
+
+        return new ModelAndView("paciente/form", dados);
+    }
+
     @GetMapping(path = "/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id) {
         PacienteDTO paciente = service.findById(id);
-
+        var listaPlanos = planoService.getAll();
         var listaCidades = cidadeService.getAll();
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("paciente", paciente);
         dados.put("listaCidades", listaCidades);
+        dados.put("listaPlanos", listaPlanos);
 
         return new ModelAndView("paciente/form", dados);
     }

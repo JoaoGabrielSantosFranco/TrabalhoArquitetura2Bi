@@ -5,31 +5,35 @@
 .botao-direita {
   justify-content: center;
 }
+@font-face {
+  font-family: "pixelart";
+  src: url(TTF/dogicapixel.ttf);
+}
 
 body {
-  font-family: Andale Mono, monospace;
-  background: rgb(255, 255, 255);
-  background-image: url(https://img.freepik.com/vetores-gratis/plano-de-fundo-geometrico-da-area-de-trabalho-vetor-de-design-abstrato-branco_53876-144666.jpg?w=2000);
-  background-size: 100%;
+  display: block;
+  font-family: pixelart, monospace;
+  background: rgb(222, 159, 211);
+
 }
+
 .texto {
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 5%;
+  border: 3px solid rgb(0, 0, 0);
   width: 85%;
   margin: 0 auto;
   padding: 0.5cm;
   text-indent: 2%;
+
+  border-radius: 3%;
 }
 
 .Navegaçao {
+  background-color: rgb(231, 231, 63);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 25%;
-  width: 85%;
+  justify-content: space-around;
+  border: 3px solid rgb(0, 0, 0);
   margin: 0 auto;
 }
 
@@ -48,8 +52,15 @@ a:hover {
 
 .volte {
   display: flex;
-  border-radius: 25%;
   border: 2px solid rgb(0, 0, 0);
-  width: 7%;
+  width: 10%;
   padding-left: 15px;
+  background-color: rgb(231, 231, 63);
+}
+
+.imagens{
+  display: block;
+  justify-content: space-between;
+  margin-bottom: auto;
+
 }
